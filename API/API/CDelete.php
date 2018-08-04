@@ -16,8 +16,10 @@ class CDelete extends CStatement {
     
 //    http://localhost/API/?KEY=73461234dgvbsv2e18r5rt&statement=d&Column=Cedula,Nombre_Paciente&Table=TABLA_GRANDE&WKey=Cedula&WVal=i&WSig=i
     
+//    http://localhost/API/?KEY=73461234dgvbsv2e18r5rt&statement=d&Column=Cedula,Nombre_Paciente&Table=TABLA_GRANDE&WKey=Cedula&WSig=i&WVal=8
+    
     public function __construct($cols, $table, $where_key =null, 
-             $where_value=10,$where_signal=null ) 
+             $where_value=null,$where_signal=null ) 
     {
         $this->table = $table;
         $this->columns = ($cols == "all" ? "*" : str_replace("%2C", ",", $cols));
@@ -56,14 +58,14 @@ class CDelete extends CStatement {
                         $this->parseSignal($this->where_signal[$i]) ."?";
                 else
                     $string .= " AND `" . $this->where_key[$i] . "`". 
-                        $this->parseSignal($this->where_signal[$i]) ."?";
+                        $this->parseSignal($this->where_signal[$i]) .  "?";
                 array_push($p, $this->where_value[$i]);
             }
             
         }
-        var_dump($string);
+//        var_dump($string);
 //        
-//        $rs = \Core\S_DATABASE::execute($string, $p);
+        $rs = \Core\S_DATABASE::execute($string, $p);
 //        $this->parseResponse($rs);
     }
     
