@@ -13,7 +13,9 @@ class CStatement
     protected $where_key = [];
     protected $where_value = [];
     protected $where_signal = [];
-    
+    protected $values=[];
+
+
     protected function validateWhereLenght() {
         $sizeOfKey = $this->sizeof($this->where_key);
         $sizeOfVal = $this->sizeof($this->where_value);
