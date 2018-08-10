@@ -5,18 +5,7 @@ use Core\CStatement;
 class CDelete extends CStatement {
 
 
-    //http://localhost/API/?KEY=73461234dgvbsv2e18r5rt&statement=s&Column=all&Table=TABLA_GRANDE
-    
-    
-    //http://localhost/API/?KEY=73461234dgvbsv2e18r5rt&statement=d&Column=Cedula,Nombre_Paciente&Table=TABLA_GRANDE&WSIG=SIG&WKEY=KEY&WVAL=1
-
-//    http://localhost/API/?KEY=73461234dgvbsv2e18r5rt&statement=d&Column=Cedula,Nombre_Paciente&Table=TABLA_GRANDE&WKey=KEY,5&WVal=1,2&WSig=eee
-    
-//    http://localhost/API/?KEY=73461234dgvbsv2e18r5rt&statement=d&Column=Cedula,Nombre_Paciente&Table=TABLA_GRANDE&WKey=m,m&WVal=i,i&WSig=i,i
-    
-//    http://localhost/API/?KEY=73461234dgvbsv2e18r5rt&statement=d&Column=Cedula,Nombre_Paciente&Table=TABLA_GRANDE&WKey=Cedula&WVal=i&WSig=i
-    
-//    http://localhost/API/?KEY=73461234dgvbsv2e18r5rt&statement=d&Column=Cedula,Nombre_Paciente&Table=TABLA_GRANDE&WKey=Cedula&WSig=i&WVal=8
+//    http://localhost/API/?KEY=2345&statement=d&Column=Cedula,Nombre_Paciente&Table=TABLA_GRANDE&WKey=Cedula&WSig=i&WVal=90
     
     public function __construct($cols, $table, $where_key =null, 
              $where_value=null,$where_signal=null ) 

@@ -2,55 +2,53 @@
 
 namespace Core;
 
-class CStatement
-{
+class CStatement {
 
     protected $table = "";
-    
     protected $set_key = [];
     protected $set_val = [];
-    
+    protected $cols = [];
     protected $where_key = [];
     protected $where_value = [];
     protected $where_signal = [];
-    protected $values=[];
-
+    protected $values = [];
 
     protected function validateWhereLenght() {
         $sizeOfKey = $this->sizeof($this->where_key);
         $sizeOfVal = $this->sizeof($this->where_value);
         $sizeOfSig = $this->sizeof($this->where_signal);
+        $sizeOfcols = $this->sizeof($this->cols);
+        $sizeOfvalues = $this->sizeof($this->values);
 
-        if ($sizeOfKey != $sizeOfVal || $sizeOfKey != $sizeOfSig) {
-            $this->response(400,
-                "el numero de keys y values no es igual, en el where clause. "
-                . "WKey Size: " . ($sizeOfKey). ". "
-                . "WVal Size: " . ($sizeOfVal) . ". "
-                . "WSig Size: " . ($sizeOfSig) ,
-                NULL
+
+
+        if ($sizeOfKey != $sizeOfVal || $sizeOfKey != $sizeOfSig || $sizeOfcols != $sizeOfvalues) {
+            $this->response(400, "el numero de keys y values no es igual, en el where clause. "
+                    . "Cols Size: " . ($sizeOfcols) . ". "
+                    . "Values Size: " . ($sizeOfvalues) . ". "
+                    . "WKey Size: " . ($sizeOfKey) . ". "
+                    . "WVal Size: " . ($sizeOfVal) . ". "
+                    . "WSig Size: " . ($sizeOfSig), NULL
             );
         }
         return $sizeOfKey;
     }
-    
+
     protected function validateKeyLenght() {
         $sizeOfKey = $this->sizeof($this->set_key);
         $sizeOfVal = $this->sizeof($this->set_val);
 
         if ($sizeOfKey != $sizeOfVal) {
-            $this->response(400,
-                "el numero de keys y values no es igual, en el where clause. "
-                . "WKey Size: " . ($sizeOfKey). ". "
-                . "WVal Size: " . ($sizeOfVal) . ". ",
-                NULL
+            $this->response(400, "el numero de keys y values no es igual, en el where clause. "
+                    . "WKey Size: " . ($sizeOfKey) . ". "
+                    . "WVal Size: " . ($sizeOfVal) . ". ", NULL
             );
         }
         return $sizeOfKey;
     }
-    
-    
+
     protected function parseSignal($encodedSignal) {
-        
+
         switch ($encodedSignal) {
             case "i": return "=";
             case "a": return ">";
@@ -60,7 +58,7 @@ class CStatement
         }
         $this->response(400, "Invalid Signal: " . $encodedSignal, NULL);
     }
-    
+
     // como se llena por explode, el sizeof de PHP siempre devolverá
     // almenos 1 valor. esto lo fixea
     protected function sizeof($array) {
@@ -85,4 +83,5 @@ class CStatement
         echo $json_response;
         exit;
     }
+
 }

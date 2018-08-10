@@ -5,11 +5,9 @@ require_once 'CStatement.php';
 use Core\CStatement;
 
 class CUpdate extends CStatement {
-
-    //http://localhost/API/index.php?KEY=73461234dgvbsv2e18r5rt&statement=i&Table=BRAYAN_INVENTARIO&Column=NOMBRE_PRODUCTO,CODIGO_PRODUCTO&Values=%22lol%22,%272%27
-
+//http://localhost/API/index.php?KEY=2345&statement=u&Table=TABLA_GRANDE&SKey=Nombre_Paciente&SVal=Warner&WKey=Cedula&WVal=0
     public function __construct($table, $where_value, $where_key, $set_key, $set_val) {
-        echo "hola";
+       
         $this->table = $table;
         $this->set_key = $set_key;
         $this->set_val = $set_val;
@@ -27,8 +25,8 @@ class CUpdate extends CStatement {
     private function parseUpdate() {
 
         $string = "UPDATE " . $this->table .
-                " SET " . $this->where_value  . "=" .$this->where_key   .
-                " WHERE " .  $this->set_key."=".$this->set_val ;
+                " SET " . $this->where_value  . "='" .$this->where_key   ."'".
+                " WHERE " .  $this->set_key."=".$this->set_val;
         echo $string;
         try {
             $rs = \Core\S_DATABASE::execute($string);

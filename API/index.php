@@ -7,7 +7,7 @@ require_once './CInsert.php';
 require_once './CUpdate.php';
 require_once './CDelete.php';
 
-$keyGEN = "73461234dgvbsv2e18r5rt";
+$keyGEN = "2345";
 
 if (!isset($_GET["KEY"]) || strcmp($_GET["KEY"], $keyGEN) != 0) {
     echo "no way counter";    
