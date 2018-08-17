@@ -2,18 +2,10 @@
 require_once 'CStatement.php';
 
 use Core\CStatement;
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 class CSelect extends CStatement {
-
-
     //http://localhost/API/?KEY=73461234dgvbsv2e18r5rt&statement=s&Column=all&Table=TABLA_GRANDE
-    //http://localhost/API/?KEY=73461234dgvbsv2e18r5rt&statement=s&Column=Cedula,Nombre_Paciente&Table=TABLA_GRANDE
-    
+    //http://localhost/API/?KEY=2345=s&Column=Cedula,Nombre_Paciente&Table=TABLA_GRANDE
     public function __construct($cols, $table, $where_key = NULL, 
             $where_signal = NULL, $where_value = NULL) 
     {
@@ -33,7 +25,6 @@ class CSelect extends CStatement {
         
         $this->parseSelect();
     }
-
     private function parseSelect() {
         $p = [];
         $string = "SELECT " . $this->columns .
@@ -59,7 +50,6 @@ class CSelect extends CStatement {
         $rs = \Core\S_DATABASE::execute($string, $p);
         $this->parseResponse($rs);
     }
-    
     private function parseResponse($rs) {
         if ($rs->rowCount() <= 0)
             echo $this->response(310, "No Rows founded", 0, $rs->fetchAll());

@@ -1,9 +1,6 @@
 <?php
-
 namespace Core;
-
 class CStatement {
-
     protected $table = "";
     protected $set_key = [];
     protected $set_val = [];
@@ -19,9 +16,6 @@ class CStatement {
         $sizeOfSig = $this->sizeof($this->where_signal);
         $sizeOfcols = $this->sizeof($this->cols);
         $sizeOfvalues = $this->sizeof($this->values);
-
-
-
         if ($sizeOfKey != $sizeOfVal || $sizeOfKey != $sizeOfSig || $sizeOfcols != $sizeOfvalues) {
             $this->response(400, "el numero de keys y values no es igual, en el where clause. "
                     . "Cols Size: " . ($sizeOfcols) . ". "
@@ -33,8 +27,9 @@ class CStatement {
         }
         return $sizeOfKey;
     }
-
     protected function validateKeyLenght() {
+        echo $this->sizeof($this->set_key);
+        echo $this->sizeof($this->set_val);
         $sizeOfKey = $this->sizeof($this->set_key);
         $sizeOfVal = $this->sizeof($this->set_val);
 
@@ -46,7 +41,6 @@ class CStatement {
         }
         return $sizeOfKey;
     }
-
     protected function parseSignal($encodedSignal) {
 
         switch ($encodedSignal) {
@@ -58,9 +52,6 @@ class CStatement {
         }
         $this->response(400, "Invalid Signal: " . $encodedSignal, NULL);
     }
-
-    // como se llena por explode, el sizeof de PHP siempre devolverá
-    // almenos 1 valor. esto lo fixea
     protected function sizeof($array) {
         $i = 0;
         foreach ($array as $val) {
@@ -69,7 +60,6 @@ class CStatement {
         }
         return $i;
     }
-
     protected function response($status, $status_message, $data_lenght, $data) {
         header("HTTP/1.1 " . $status);
         header('Content-Type: application/json');
